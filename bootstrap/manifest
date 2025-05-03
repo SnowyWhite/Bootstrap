@@ -10,6 +10,6 @@ email: 45012141+SnowyWhite@users.noreply.github.com
 #build-error-email: 45012141+SnowyWhite@users.noreply.github.com
 depends: * build2 >= 0.17.0
 depends: * bpkg >= 0.17.0
-depends: libbootstrap == $
+depends: libbootstrap >= 0.1.0
 builds: all : &windows
 builds: -clang
