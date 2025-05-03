@@ -12,4 +12,4 @@ depends: * build2 >= 0.17.0
 depends: * bpkg >= 0.17.0
 depends: libbootstrap >= 0.1.0
 builds: all : &windows
-builds: windows : -clang
+builds: -clang
