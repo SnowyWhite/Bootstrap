@@ -36,7 +36,7 @@ install_exception_handler ()
                   const_cast<LPVOID> (static_cast<LPCVOID> (L"dbghelp.dll")),
                   0, nullptr);
 
-  handle_exception_handler = ::AddVectoredExceptionHandler (1, [] (const PEXCEPTION_POINTERS ex) -> LONG {
+  handle_exception_handler = ::AddVectoredExceptionHandler (1, [] (PEXCEPTION_POINTERS ex) -> LONG {
     // Ignore debugging and some common language exceptions
     if (const DWORD code = ex->ExceptionRecord->ExceptionCode;
       code == CONTROL_C_EXIT || code == 0x406D1388 /* SetThreadName */ ||
@@ -56,7 +56,7 @@ install_exception_handler ()
                                                                       PMINIDUMP_EXCEPTION_INFORMATION,
                                                                       PMINIDUMP_USER_STREAM_INFORMATION,
                                                                       PMINIDUMP_CALLBACK_INFORMATION)> (
-        ::GetProcAddress (dbghelp_module, "MiniDumpWriteDump"));
+      ::GetProcAddress (dbghelp_module, "MiniDumpWriteDump"));
       if (dbghelp_write_dump == nullptr)
         goto continue_search;
 
@@ -64,8 +64,10 @@ install_exception_handler ()
       dump_name[10]    = '0' + static_cast<char> (dump_index / 10);
       dump_name[11]    = '0' + static_cast<char> (dump_index % 10);
 
-      const HANDLE file = ::CreateFileA (dump_name, GENERIC_WRITE, FILE_SHARE_WRITE, nullptr, CREATE_ALWAYS,
-                                         FILE_ATTRIBUTE_NORMAL, nullptr);
+      HANDLE file = ::CreateFileA (dump_name,
+                                   GENERIC_WRITE, FILE_SHARE_WRITE, nullptr, CREATE_ALWAYS,
+                                   FILE_ATTRIBUTE_NORMAL, nullptr);
+
       if (file == INVALID_HANDLE_VALUE)
         goto continue_search;
 
@@ -97,13 +99,15 @@ DllMain (const HMODULE hModule, DWORD dwReason, LPVOID)
     module_path   = get_module_path (module_handle);
     target_path   = get_module_path (nullptr);
 
+    ::MessageBoxA (nullptr, "Hello World", nullptr, MB_OK);
+
     if (HMODULE modules[1024]; ::K32EnumProcessModules (::GetCurrentProcess (), modules, sizeof(modules), &dwReason))
     {
       for (DWORD i = 0; i < std::min<DWORD> (dwReason / sizeof (HMODULE), std::size (modules)); i++)
       {
         if (modules[i] != hModule && ::GetProcAddress (modules[i], "get_hostfxr_path") != nullptr)
         {
-          // Load bootstrap
+          // nethost.dll needs to be loaded before we can load bootstrap
           break;
         }
       }
