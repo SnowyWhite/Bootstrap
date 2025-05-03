@@ -1,0 +1,13 @@
+: 1
+name: bootstrap
+version: 0.1.0-a.0.z
+language: c++
+summary: bootstrap C++ executable
+license: other: proprietary ; Not free/open source.
+description-file: README.md
+url: https://example.org/bootstrap
+email: 45012141+SnowyWhite@users.noreply.github.com
+#build-error-email: 45012141+SnowyWhite@users.noreply.github.com
+depends: * build2 >= 0.17.0
+depends: * bpkg >= 0.17.0
+#depends: libhello ^1.0.0

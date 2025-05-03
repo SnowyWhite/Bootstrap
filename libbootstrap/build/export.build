@@ -1,0 +1,6 @@
+$out_root/
+{
+  include libbootstrap/
+}
+
+export $out_root/libbootstrap/$import.target
