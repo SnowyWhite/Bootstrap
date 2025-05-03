@@ -1,6 +1,6 @@
 : 1
 name: bootstrap
-version: 0.1.0-a.0.z
+version: 0.1.0
 language: c++
 summary: bootstrap C++ executable
 license: other: proprietary ; Not free/open source.
