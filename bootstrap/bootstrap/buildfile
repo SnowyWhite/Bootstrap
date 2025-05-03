@@ -1,4 +1,4 @@
-libs =
+import libs = libbootstrap%lib{bootstrap}
 #import libs += libhello%lib{hello}
 
 exe{bootstrap}: {hxx ixx txx cxx}{**} $libs testscript

@@ -3,9 +3,6 @@ impl_libs = # Implementation dependencies.
 #import xxxx_libs += libhello%lib{hello}
 
 lib{bootstrap}: {hxx ixx txx cxx}{** -version} hxx{version} $impl_libs $intf_libs
-{
-  backlink = true
-}
 
 hxx{version}: in{version} $src_root/manifest
 
