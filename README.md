@@ -1,6 +1,4 @@
-# bootstrap <SUMMARY>
-
-`bootstrap` is a <SUMMARY-OF-FUNCTIONALITY>.
+# bootstrap
 
 This file contains setup instructions and other details that are more
 appropriate for development rather than consumption. If you want to use

@@ -1,6 +1,6 @@
 # Setup
 
-Below is a summary of steps required for initializing the project, adding packages, configuring build environments,
+Below is a summary of the steps required for initializing the project, configuring build environments,  
 and managing build settings.
 
 ## 🛠️ Project Initialization
@@ -39,10 +39,10 @@ To add MSVC support, open a Visual Studio Developer Command Prompt and run:
 bdep init -C -@msvc cc config.cxx=cl config.cc.compiledb=./ config.config.hermetic=true
 ```
 
-> 💡 Note:
-> - This defaults to an `x86_64` target. Use the `x86` Developer Command Prompt if you need 32-bit.  
-> - The `config.config.hermetic=true` variable ensures the configuration is portable and can be used from anywhere 
-> (outside a Developer command Prompt).
+> 💡 Note: This defaults to an `x86_64` target. Use the `x86` Developer Command Prompt if you need 32-bit.  
+
+The `config.config.hermetic=true` variable ensures the configuration is portable.  
+This means that it can be used from outside a Visual Studio Developer command Prompt.
 
 ## 🧱 Building the Project
 
@@ -88,7 +88,8 @@ Set compile options (e.g., debug symbols):
 b config.cxx.coptions=-g
 ```
 
-⚠️ These overrides apply only to the current build invocation.  
+> ⚠️ These overrides apply only to the current build invocation.
+
 For example:
 
 ```shell
