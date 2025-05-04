@@ -1,4 +1,4 @@
-# bootstrap - <SUMMARY>
+# bootstrap <SUMMARY>
 
 `bootstrap` is a <SUMMARY-OF-FUNCTIONALITY>.
 
@@ -18,3 +18,11 @@ bdep init -C @gcc cc config.cxx=g++
 bdep update
 bdep test
 ```
+
+Build 32 bit version:
+
+```
+bdep init -C -@mingw cc config.cxx=x86_64-w64-mingw32-g++
+bdep update -@mingw
+```
+
