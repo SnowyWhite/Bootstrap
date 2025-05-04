@@ -1,8 +1,9 @@
 import libs = libbootstrap%lib{bootstrap}
-#import libs += libhello%lib{hello}
 
 exe{bootstrap}: {hxx ixx txx cxx}{**} $libs testscript
 {
   backlink = true
 }
+
 cxx.poptions =+ "-I$out_root" "-I$src_root"
+cxx.libs += libnethost/lib/nethost.lib
