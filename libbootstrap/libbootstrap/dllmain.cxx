@@ -1,27 +1,24 @@
-#include <algorithm>
+#include <libbootstrap/export.hxx>
 #include <windows.h>
-#include <filesystem>
-#include <iostream>
-
-HMODULE module_handle = nullptr;
-std::filesystem::path module_path{ };
-std::filesystem::path target_path{ };
-
-std::filesystem::path
-get_module_path (const HMODULE module_handle)
-{
-  constexpr auto buffer_size = 4096;
-  const auto module_path     = std::make_unique<WCHAR[]> (buffer_size);
-
-  if (::GetModuleFileNameW (module_handle, module_path.get (), buffer_size) == ERROR_INSUFFICIENT_BUFFER)
-  [[unlikely]]
-  {
-    std::cerr << "Failed to get module path: Insufficient buffer size\n";
-    return { };
-  }
-
-  return module_path.get ();
-}
+// HMODULE module_handle = nullptr;
+// std::filesystem::path module_path{ };
+// std::filesystem::path target_path{ };
+//
+// std::filesystem::path
+// get_module_path (const HMODULE module_handle)
+// {
+//   constexpr auto buffer_size = 4096;
+//   const auto module_path     = std::make_unique<WCHAR[]> (buffer_size);
+//
+//   if (::GetModuleFileNameW (module_handle, module_path.get (), buffer_size) == ERROR_INSUFFICIENT_BUFFER)
+//   [[unlikely]]
+//   {
+//     std::cerr << "Failed to get module path: Insufficient buffer size\n";
+//     return { };
+//   }
+//
+//   return module_path.get ();
+// }
 
 // void
 // install_exception_handler ()
@@ -90,9 +87,9 @@ DllMain (const HMODULE hModule, DWORD dwReason, LPVOID)
 {
   if (dwReason == DLL_PROCESS_ATTACH)
   {
-    module_handle = hModule;
-    module_path   = get_module_path (module_handle);
-    target_path   = get_module_path (nullptr);
+    // module_handle = hModule;
+    // module_path   = get_module_path (module_handle);
+    // target_path   = get_module_path (nullptr);
 
     // if (HMODULE modules[1024]; ::K32EnumProcessModules (::GetCurrentProcess (), modules, sizeof(modules), &dwReason))
     // {

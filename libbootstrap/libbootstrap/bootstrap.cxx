@@ -1,4 +1,7 @@
+#include <iostream>
 #include <libbootstrap/bootstrap.hxx>
+#include <print>
+#include <bits/ostream.tcc>
 
 using namespace std;
 
@@ -26,6 +29,18 @@ namespace bootstrap
   DWORD
   initialize (LPVOID lpParam)
   {
+    const auto params = static_cast<config*> (lpParam);
+    const std::basic_string path (params->hostfxr_path, params->path_len);
+    std::wcout << path << std::endl;
 
+    /*
+    const auto hostfxr = ::LoadLibraryW (hostfxr_path.get ());
+    if (!hostfxr)
+    {
+    throw runtime_error ("failed to load hostfxr");
+    }
+    */
+
+    return 0;
   }
 }
